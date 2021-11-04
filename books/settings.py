@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_django',
     'store',
 ]
 
@@ -50,10 +51,15 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'books.urls'
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -131,3 +137,6 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.JSONParser',
     )
 }
+SOCIAL_AUTH_POSTGRES_JSONFIELD = True
+SOCIAL_AUTH_GITHUB_KEY = 'ac8efc32aec5582c83a4'
+SOCIAL_AUTH_GITHUB_SECRET = '0de0b46988a9ba8bf94a39263c75eaffe721363d'
